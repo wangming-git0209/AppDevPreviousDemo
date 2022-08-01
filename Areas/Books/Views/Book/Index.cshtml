@@ -1,0 +1,61 @@
+<h1>Hello this is Book CRUD </h1>
+@* @model IQueryable<appdev.Models.Book>
+
+  
+@foreach (var item in Model)
+{
+  <p>@item.Title</p> 
+  <p><img src="@item.ImgUrl" alt=""></p>
+} *@
+
+
+@model IEnumerable<appdev.Models.Book> 
+
+ <a class="btn btn-primary"asp-area="Books" asp-controller="Book" asp-action="Create" >Create</a>
+
+@{
+    int RowNo = 0;
+}
+
+ <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Num</th>
+      <th scope="col">Title</th>
+      <th scope="col">Category</th>
+      <th scope="col">Page</th>
+      <th scope="col">Image</th>
+      <th scope="col">Author</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+@foreach (var item in Model)
+{
+  
+  <tbody>
+    <tr>
+      <th scope="row">@{RowNo++;} @RowNo</th>
+      <td>@Html.DisplayFor(Model => item.Title)</td>
+      <td>@Html.DisplayFor(Model => item.Category)</td>
+      <td>@Html.DisplayFor(Model => item.Pages)</td>
+      <td>
+        <img src="@Html.DisplayFor(Model => item.ImgUrl)" alt="">
+      </td>
+      <td>@Html.DisplayFor(Model => item.Author)</td>
+      <td>
+        <a class="btn btn-dark"asp-area="Books" asp-controller="Book" asp-action="Update" asp-route-id="@item.Isbn">Update</a>
+      </td> 
+      <td>
+        <a class="btn btn-info"asp-area="Books" asp-controller="Book" asp-action="Details" asp-route-id="@item.Isbn">Details</a>
+      </td>
+      <td>
+        <a class="btn btn-danger"asp-area="Books" asp-controller="Book" asp-action="Delete" asp-route-id="@item.Isbn">Delete</a>
+      </td>
+         
+     
+    </tr>
+  </tbody>
+
+}
+</table> 
+
